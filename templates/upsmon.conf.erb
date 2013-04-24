@@ -1,0 +1,77 @@
+# File managed by Puppet
+#
+RUN_AS_USER <%= scope.lookupvar('nut::client_run_as_user') %>
+MONITOR <%= scope.lookupvar('nut::client_name') %>@<%= scope.lookupvar('nut::client_server_host') %> <%= scope.lookupvar('nut::client_powervalue') %> <%= scope.lookupvar('nut::client_user') %>  <%= scope.lookupvar('nut::client_password') %> <%= scope.lookupvar('nut::client_ups_mode') %>
+MINSUPPLIES <%= scope.lookupvar('nut::client_minsupplies') %>
+SHUTDOWNCMD "<%= scope.lookupvar('nut::client_shutdowncmd') %>"
+<% if scope.lookupvar('nut::client_notifycmd') != '' -%>
+NOTIFYCMD <%= scope.lookupvar('nut::client_notifycmd') %>
+<% end -%>
+POLLFREQ <%= scope.lookupvar('nut::client_pollfreq') %>
+POLLFREQALERT <%= scope.lookupvar('nut::client_pollfreqalert') %>
+HOSTSYNC <%= scope.lookupvar('nut::client_hostsync') %>
+DEADTIME <%= scope.lookupvar('nut::client_deadtime') %>
+POWERDOWNFLAG <%= scope.lookupvar('nut::client_powerdownflag') %>
+<% if scope.lookupvar('nut::client_notify_msg_online') != '' -%>
+NOTIFYMSG ONLINE "<%= scope.lookupvar('nut::client_notify_msg_online') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_onbat') != '' -%>
+NOTIFYMSG ONBATT "<%= scope.lookupvar('nut::client_notify_msg_onbat') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_lowbat') != '' -%>
+NOTIFYMSG LOWBATT "<%= scope.lookupvar('nut::client_notify_msg_lowbat') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_fsd') != '' -%>
+NOTIFYMSG FSD "<%= scope.lookupvar('nut::client_notify_msg_fsd') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_commonk') != '' -%>
+NOTIFYMSG COMMOK "<%= scope.lookupvar('nut::client_notify_msg_commonk') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_commbad') != '' -%>
+NOTIFYMSG COMMBAD "<%= scope.lookupvar('nut::client_notify_msg_commbad') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_shutdown') != '' -%>
+NOTIFYMSG SHUTDOWN "<%= scope.lookupvar('nut::client_notify_msg_shutdown') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_remplbatt') != '' -%>
+NOTIFYMSG REPLBATT "<%= scope.lookupvar('nut::client_notify_msg_remplbatt') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_nocomm') != '' -%>
+NOTIFYMSG NOCOMM "<%= scope.lookupvar('nut::client_notify_msg_nocomm') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notify_msg_noparent') != '' -%>
+NOTIFYMSG NOPARENT "<%= scope.lookupvar('nut::client_notify_msg_noparent') %>"
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_online') != '' -%>
+NOTIFYFLAG ONLINE <%= scope.lookupvar('nut::client_notifyflag_online') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_onbat') != '' -%>
+NOTIFYFLAG ONBATT <%= scope.lookupvar('nut::client_notifyflag_onbat') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_lowbat') != '' -%>
+NOTIFYFLAG LOWBATT <%= scope.lookupvar('nut::client_notifyflag_lowbat') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_fsd') != '' -%>
+NOTIFYFLAG FSD <%= scope.lookupvar('nut::client_notifyflag_fsd') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_commonk') != '' -%>
+NOTIFYFLAG COMMOK <%= scope.lookupvar('nut::client_notifyflag_commonk') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_commbad') != '' -%>
+NOTIFYFLAG COMMBAD <%= scope.lookupvar('nut::client_notifyflag_commbad') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_shutdown') != '' -%>
+NOTIFYFLAG SHUTDOWN <%= scope.lookupvar('nut::client_notifyflag_shutdown') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_remplbatt') != '' -%>
+NOTIFYFLAG REPLBATT <%= scope.lookupvar('nut::client_notifyflag_remplbatt') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_nocomm') != '' -%>
+NOTIFYFLAG NOCOMM <%= scope.lookupvar('nut::client_notifyflag_nocomm') %>
+<% end -%>
+<% if scope.lookupvar('nut::client_notifyflag_noparent') != '' -%>
+NOTIFYFLAG NOPARENT <%= scope.lookupvar('nut::client_notifyflag_noparent') %>
+<% end -%>
+RBWARNTIME <%= scope.lookupvar('nut::client_rbwarntime') %>
+NOCOMMWARNTIME <%= scope.lookupvar('nut::client_nocommwarmtime') %>
+FINALDELAY <%= scope.lookupvar('nut::client_finaldelay') %>

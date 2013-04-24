@@ -1,0 +1,13 @@
+[<%= real_user_name %>]
+  password = <%= real_user_password %>
+<% if real_user_actions != '' -%>
+  actions = <%= real_user_actions %>
+<% end -%>
+<% if array_user_instcmds != [] -%>
+<% array_user_instcmds.each do |instcmd| -%>
+  instcmds = <%= instcmd %>
+<% end -%>
+<% end -%>
+<% if real_user_upsmon_mode != '' -%>
+  upsmon <%= real_user_upsmon_mode %>
+<% end -%>

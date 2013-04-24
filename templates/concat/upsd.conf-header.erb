@@ -1,0 +1,6 @@
+LISTEN 127.0.0.1
+<% if scope.lookupvar('nut::server_listen_ip') != '' -%>
+LISTEN <%= scope.lookupvar('nut::server_listen_ip') %>
+<% end -%>
+ACL all 0.0.0.0/0
+ACL localhost 127.0.0.1/8
