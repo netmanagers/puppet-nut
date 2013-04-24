@@ -1,8 +1,8 @@
-= Puppet module: nut
+# Puppet module: nut
 
 This is a Puppet module for nut based on the second generation layout ("NextGen") of Example42 Puppet Modules.
 
-Made by Sebastián Quaino / Netmanagers
+Made by Sebastian Quaino / Netmanagers
 
 Official site: http://www.netmanagers.com.ar
 
