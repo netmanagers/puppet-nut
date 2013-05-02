@@ -6,11 +6,20 @@ describe 'nut' do
   let(:node) { 'rspec.example42.com' }
   let(:facts) { { :ipaddress => '10.42.42.42' } }
 
-  describe 'Test standard installation' do
-    it { should contain_package('nut').with_ensure('present') }
-    it { should contain_service('nut').with_ensure('running') }
-    it { should contain_service('nut').with_enable('true') }
-    it { should contain_file('nut.conf').with_ensure('present') }
+  describe 'Test standard installation - client' do
+    let(:facts) { { :operatingsystem => 'CentOS' } }
+    it { should contain_package('nut-client').with_ensure('present') }
+    it { should contain_service('ups').with_ensure('running') }
+    it { should contain_service('ups').with_enable('true') }
+    it { should include_class('nut::client') }
+  end
+
+  describe 'Test standard installation - server ' do
+    let(:facts) { { :operatingsystem => 'Debian' } }
+    it { should contain_package('nut-server').with_ensure('present') }
+    it { should contain_service('nut-server').with_ensure('running') }
+    it { should contain_service('nut-server').with_enable('true') }
+    it { should contain_file('/etc/nut/upsd.conf').with_ensure('present') }
   end
 
   describe 'Test installation of a specific version' do
