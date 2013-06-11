@@ -16,12 +16,16 @@ class nut::params {
 
   $install_mode = 'client'
 
+  $start_mode = 'netclient'
+
   ### Application related parameters
 
   $config_dir = $::operatingsystem ? {
     /(?i:Debian|Ubuntu|Mint)/ => '/etc/nut',
     default                   => '/etc/ups',
   }
+
+  $nutconf_template = 'nut/nut.conf.erb'
 
   ### CLIENT parameters
   $client_package = $::operatingsystem ? {

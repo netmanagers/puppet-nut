@@ -5,13 +5,44 @@
 #
 # This class is not to be called directly. See init.pp for details.
 #
-class nut::client inherits nut {
+class nut::client {
+
+  include nut
 
   ### Managed resources
   package { $nut::client_package:
     ensure  => $nut::manage_package,
     noop    => $nut::bool_noops,
   }
+
+### ESTO ES LO QUE AGREGUE PARA ACDMODAR EL MANEJO EN EL CLIENTE Y NO EN EL INIT.PP
+
+  $manage_package = $nut::bool_absent ? {
+    true  => 'absent',
+    false => $nut::version,
+  }
+
+  $manage_service_enable = $nut::bool_disableboot ? {
+    true    => false,
+    default => $nut::bool_disable ? {
+      true    => false,
+      default => $nut::bool_absent ? {
+        true  => false,
+        false => true,
+      },
+    },
+  }
+
+  $manage_service_ensure = $nut::bool_disable ? {
+    true    => 'stopped',
+    default =>  $nut::bool_absent ? {
+      true    => 'stopped',
+      default => 'running',
+    },
+  }
+
+
+### HASTA ACA
 
   # FIXME! This is a nasty hack, but in CentOS, nut-client and nut-server
   # have a single init script (ups), so we check if it's not already defined

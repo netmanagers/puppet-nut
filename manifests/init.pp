@@ -6,7 +6,7 @@
 # == Parameters
 #
 # Pay attention that we have five kind of parameters:
-# 
+#
 # * General/module parameters: these affect the general behaviour of the module
 #   Many of them are standard example42 parameters
 #
@@ -26,6 +26,10 @@
 #
 # [*process_user*]
 #   The name of the user nut runs with. Used by puppi and monitor.
+#
+# [*start_mode*]
+#   The type of the service start: "netserver", "netclient", "standalone" or "none".
+#   Default: netclient
 #
 # [*install_mode*]
 #   The type of installation: "server" or "client".
@@ -176,7 +180,7 @@
 #   Log file(s). Used by puppi
 #
 # ###############################
-# ### Client (upsmon) parameters. 
+# ### Client (upsmon) parameters.
 #
 # [*client_package*]
 #   The name of nut client package
@@ -258,7 +262,7 @@
 #     $client_notify_msg_noparent ='client parent process died - shutdown impossible'
 #
 # ###############################
-# ### Server daemon (upsd) parameters. 
+# ### Server daemon (upsd) parameters.
 #
 # [*server_service*]
 #   The name of nut server service
@@ -325,6 +329,7 @@ class nut (
   $client_template               = params_lookup( 'client_template' ),
   $server_concat_template_header = params_lookup( 'server_concat_template_header' ),
   $server_concat_template_footer = params_lookup( 'server_concat_template_footer' ),
+  $nutconf_template              = params_lookup( 'nutconf_template' ),
   $service_autorestart           = params_lookup( 'service_autorestart' , 'global' ),
   $options                       = params_lookup( 'options' ),
   $version                       = params_lookup( 'version' ),
@@ -381,6 +386,7 @@ class nut (
   $port                          = params_lookup( 'port' ),
   $protocol                      = params_lookup( 'protocol' ),
   $install_mode                  = params_lookup( 'install_mode' ),
+  $start_mode                    = params_lookup( 'start_mode' ),
   $client_run_as_user            = params_lookup( 'client_run_as_user' ),
   $client_name                   = params_lookup( 'client_name' ),
   $client_server_host            = params_lookup( 'client_server_host' ),
@@ -535,6 +541,9 @@ class nut (
       noop    => $nut::bool_noops,
     }
   }
+
+  ## Nut.conf configuration
+  include nut::nutconf
 
   ### Server configuration
   if $nut::install_mode == 'server' {

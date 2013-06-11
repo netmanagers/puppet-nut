@@ -7,12 +7,15 @@
 #
 # The parameters used in this class are defined for the main nut class
 #
-class nut::server inherits nut {
+class nut::server {
+
+  include nut
 
   ### Managed resources
   package { $nut::server_package:
     ensure => $nut::manage_package,
     name   => $nut::server_package,
+    noop   => $nut::bool_noops,
   }
 
   # FIXME! This is a nasty hack, but in CentOS, nut-client and nut-server

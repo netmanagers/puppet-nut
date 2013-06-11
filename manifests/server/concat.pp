@@ -14,6 +14,7 @@ class nut::server::concat {
     group   => $nut::config_file_group,
     warn    => true,
     notify  => Service[$nut::server_service],
+    require => Package[$nut::server_package],
   }
 
   concat::fragment{ 'ups_server_header':
