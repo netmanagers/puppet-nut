@@ -83,13 +83,13 @@ describe 'nut::client' do
 #    end
 #  end
 
-#  describe 'Test Puppi Integration' do
-#    let(:params) { {:puppi => true, :puppi_helper => "myhelper"} }
-#    it { should contain_puppi__ze('nut').with_helper('myhelper') }
-#  end
+  describe 'Test Puppi Integration' do
+    let(:facts) { {:puppi => true, :puppi_helper => "myhelper"} }
+    it { should contain_puppi__ze('nut').with_helper('myhelper') }
+  end
 
 #  describe 'Test Monitoring Tools Integration' do
-#    let(:params) { {:monitor => true, :monitor_tool => "puppi" } }
+#    let(:facts) { {:monitor => true, :monitor_tool => "puppi" } }
 #    it { should contain_monitor__process('nut_process').with_tool('puppi') }
 #  end
 
