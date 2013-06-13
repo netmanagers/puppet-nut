@@ -71,9 +71,9 @@ describe 'nut::client' do
 #    end
 #  end
 
-#  describe 'Test customizations - custom class' do
-#    let(:params) { {:my_class => "nut::spec" } }
-#  end
+  describe 'Test customizations - custom class' do
+    let(:params) { {:my_class => "nut::spec" } }
+  end
 
 #  describe 'Test service autorestart' do
 #    let(:params) { {:service_autorestart => "no" } }
