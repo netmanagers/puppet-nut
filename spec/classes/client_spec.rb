@@ -12,17 +12,17 @@ describe 'nut::client' do
     it { should contain_service('ups').with_enable('true') }
   end
 
-  describe 'Test ups.conf config adsent in client mode' do
+  describe 'Test ups.conf config absent in client mode' do
     let(:facts) { {:install_mode => 'client' } }
     it { should_not contain_file('ups.conf') }
   end
 
-  describe 'Test upsd.conf config adsent in client mode' do
+  describe 'Test upsd.conf config absent in client mode' do
     let(:facts) { {:install_mode => 'client' } }
     it { should_not contain_file('upsd.conf') }
   end
 
-  describe 'Test upsd.user config adsent in client mode' do
+  describe 'Test upsd.user config absent in client mode' do
     let(:facts) { {:install_mode => 'client' } }
     it { should_not contain_file('upsd.user') }
   end
