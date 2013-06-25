@@ -15,8 +15,10 @@
 class nut::params {
 
   $install_mode = 'client'
-
-  $start_mode = 'netclient'
+  
+  # Valid modes are:
+  # 'none', 'standalone', 'netserver', 'netclient'
+  $start_mode = ''
 
   ### Application related parameters
 

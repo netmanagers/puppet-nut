@@ -29,7 +29,7 @@
 #
 # [*start_mode*]
 #   The type of the service start: "netserver", "netclient", "standalone" or "none".
-#   Default: netclient
+#   Default: none
 #
 # [*install_mode*]
 #   The type of installation: "server" or "client".
@@ -521,6 +521,11 @@ class nut (
     default   => $nut::server_source,
   }
 
+  $manage_nutconf_file_content = $nut::nutconf_template ? {
+    ''        => undef,
+    default   => template($nut::nutconf_template),
+  }
+
   $manage_client_file_content = $nut::client_template ? {
     ''        => undef,
     default   => template($nut::client_template),
@@ -549,7 +554,9 @@ class nut (
   }
 
   ## Nut.conf configuration
-  include nut::nutconf
+  if $nut::start_mode != '' {
+    include nut::nutconf
+  }
 
   ### Server configuration
   if $nut::install_mode == 'server' {
