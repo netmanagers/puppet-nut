@@ -25,8 +25,6 @@ class nut::params {
     default                   => '/etc/ups',
   }
 
-  $nutconf_template = 'nut/nut.conf.erb'
-
   ### CLIENT parameters
   $client_package = $::operatingsystem ? {
     default => 'nut-client',
@@ -105,6 +103,16 @@ class nut::params {
   $server_user_instcmds = ''
   $server_user_upsmon_mode = ''
 
+  ### INIT file
+  $nutconf_template = 'nut/nut.conf.erb'
+  $nutconf_source = ''
+
+  $nutconf_config_file = $::operatingsystem ? {
+    /(?i:Debian|Ubuntu|Mint)/ => '/etc/nut/nut.conf',
+    default                   => '/etc/sysconfig/ups',
+  }
+
+
   ### COMMON parameters
   $service_status = $::operatingsystem ? {
     default => true,
@@ -118,7 +126,6 @@ class nut::params {
     default => 'nut',
   }
 
-
   $config_file_mode = $::operatingsystem ? {
     default => '0640',
   }
@@ -129,11 +136,6 @@ class nut::params {
 
   $config_file_group = $::operatingsystem ? {
     default => 'nut',
-  }
-
-  $config_file_init = $::operatingsystem ? {
-    /(?i:Debian|Ubuntu|Mint)/ => '/etc/nut/nut.conf',
-    default                   => '/etc/sysconfig/ups',
   }
 
   # FIXME! Needed?

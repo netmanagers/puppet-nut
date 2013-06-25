@@ -47,7 +47,7 @@
 # [*config_file_group*]
 #   Main configuration file path group
 #
-# [*config_file_init*]
+# [*nutconf_config_file*]
 #   Path of configuration file sourced by init script
 #
 # [*my_class*]
@@ -321,15 +321,8 @@
 #
 class nut (
   $my_class                      = params_lookup( 'my_class' ),
-  $client_source                 = params_lookup( 'client_source' ),
-  $server_source                 = params_lookup( 'server_source' ),
   $source_dir                    = params_lookup( 'source_dir' ),
   $source_dir_purge              = params_lookup( 'source_dir_purge' ),
-  $server_template               = params_lookup( 'server_template' ),
-  $client_template               = params_lookup( 'client_template' ),
-  $server_concat_template_header = params_lookup( 'server_concat_template_header' ),
-  $server_concat_template_footer = params_lookup( 'server_concat_template_footer' ),
-  $nutconf_template              = params_lookup( 'nutconf_template' ),
   $service_autorestart           = params_lookup( 'service_autorestart' , 'global' ),
   $options                       = params_lookup( 'options' ),
   $version                       = params_lookup( 'version' ),
@@ -348,17 +341,27 @@ class nut (
   $debug                         = params_lookup( 'debug' , 'global' ),
   $audit_only                    = params_lookup( 'audit_only' , 'global' ),
   $noops                         = params_lookup( 'noops' ),
-  $client_package                = params_lookup( 'client_package' ),
-  $client_service                = params_lookup( 'client_service' ),
-  $client_config_file            = params_lookup( 'client_config_file' ),
-  $client_process                = params_lookup( 'client_process' ),
-  $server_package                = params_lookup( 'server_package' ),
-  $server_service                = params_lookup( 'server_service' ),
-  $server_process                = params_lookup( 'server_process' ),
   $service_status                = params_lookup( 'service_status' ),
+  $config_file_mode              = params_lookup( 'config_file_mode' ),
+  $config_file_owner             = params_lookup( 'config_file_owner' ),
+  $config_file_group             = params_lookup( 'config_file_group' ),
+  $data_dir                      = params_lookup( 'data_dir' ),
+  $log_dir                       = params_lookup( 'log_dir' ),
+  $log_file                      = params_lookup( 'log_file' ),
+  $port                          = params_lookup( 'port' ),
+  $protocol                      = params_lookup( 'protocol' ),
+  $install_mode                  = params_lookup( 'install_mode' ),
+  $start_mode                    = params_lookup( 'start_mode' ),
   $process_args                  = params_lookup( 'process_args' ),
   $process_user                  = params_lookup( 'process_user' ),
   $config_dir                    = params_lookup( 'config_dir' ),
+  $server_source                 = params_lookup( 'server_source' ),
+  $server_template               = params_lookup( 'server_template' ),
+  $server_concat_template_header = params_lookup( 'server_concat_template_header' ),
+  $server_concat_template_footer = params_lookup( 'server_concat_template_footer' ),
+  $server_package                = params_lookup( 'server_package' ),
+  $server_service                = params_lookup( 'server_service' ),
+  $server_process                = params_lookup( 'server_process' ),
   $server_upsdrivers_config_file = params_lookup( 'server_upsdrivers_config_file' ),
   $server_upsdrivers_template    = params_lookup( 'server_upsdrivers_template' ),
   $server_listen_ip              = params_lookup( 'server_listen_ip' ),
@@ -374,19 +377,18 @@ class nut (
   $server_user_instcmds          = params_lookup( 'server_user_instcmds' ),
   $server_user_upsmon_mode       = params_lookup( 'server_user_upsmon_mode' ),
   $server_config_file            = params_lookup( 'server_config_file' ),
-  $config_file_mode              = params_lookup( 'config_file_mode' ),
-  $config_file_owner             = params_lookup( 'config_file_owner' ),
-  $config_file_group             = params_lookup( 'config_file_group' ),
-  $config_file_init              = params_lookup( 'config_file_init' ),
-  $client_pid_file               = params_lookup( 'client_pid_file' ),
   $server_pid_file               = params_lookup( 'server_pid_file' ),
-  $data_dir                      = params_lookup( 'data_dir' ),
-  $log_dir                       = params_lookup( 'log_dir' ),
-  $log_file                      = params_lookup( 'log_file' ),
-  $port                          = params_lookup( 'port' ),
-  $protocol                      = params_lookup( 'protocol' ),
-  $install_mode                  = params_lookup( 'install_mode' ),
-  $start_mode                    = params_lookup( 'start_mode' ),
+  $server_config_type            = params_lookup( 'server_config_type' ),
+  $nutconf_config_file           = params_lookup( 'nutconf_config_file' ),
+  $nutconf_template              = params_lookup( 'nutconf_template' ),
+  $nutconf_source                = params_lookup( 'nutconf_source' ),
+  $client_source                 = params_lookup( 'client_source' ),
+  $client_template               = params_lookup( 'client_template' ),
+  $client_package                = params_lookup( 'client_package' ),
+  $client_service                = params_lookup( 'client_service' ),
+  $client_config_file            = params_lookup( 'client_config_file' ),
+  $client_process                = params_lookup( 'client_process' ),
+  $client_pid_file               = params_lookup( 'client_pid_file' ),
   $client_run_as_user            = params_lookup( 'client_run_as_user' ),
   $client_name                   = params_lookup( 'client_name' ),
   $client_server_host            = params_lookup( 'client_server_host' ),
@@ -425,7 +427,6 @@ class nut (
   $client_rbwarntime             = params_lookup( 'client_rbwarntime' ),
   $client_nocommwarmtime         = params_lookup( 'client_nocommwarmtime' ),
   $client_finaldelay             = params_lookup( 'client_finaldelay' ),
-  $server_config_type            = params_lookup( 'server_config_type' ),
   ) inherits nut::params {
 
   $bool_source_dir_purge=any2bool($source_dir_purge)
@@ -503,6 +504,11 @@ class nut (
   $manage_file_replace = $nut::bool_audit_only ? {
     true  => false,
     false => true,
+  }
+
+  $manage_nutconf_file_source = $nut::nutconf_source ? {
+    ''        => undef,
+    default   => $nut::nutconf_source,
   }
 
   $manage_client_file_source = $nut::client_source ? {
