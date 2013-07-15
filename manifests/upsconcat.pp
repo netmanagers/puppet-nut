@@ -5,6 +5,15 @@ define nut::upsconcat (
   $ups_port = '',
   $ups_driver = '',
   $ups_description = '',
+  $ups_vendor = '',
+  $ups_vendorid = '',
+  $ups_product = '',
+  $ups_productid = '',
+  $ups_offdelay = '',
+  $ups_ondelay = '',
+  $ups_pollfreq = '',
+  $ups_serial = '',
+  $ups_bus = '',
   $order = '50',
   $ensure = 'present') {
 

@@ -18,17 +18,15 @@ describe 'nut::upsconcat' do
         :name => 'sample1',
       }
     end
-    let(:expected) do
-"# This file is managed by Puppet. DO NOT EDIT.
-[sample1]
+    let(:expected_ups_conf_fragment) do
+"[sample1]
+  desc = \"Local UPS\"
   driver = usbhid-ups
   port = auto
-
 "
     end
-
     it { should include_class('concat::setup') }
-    it { should contain_concat__fragment('nut_upsconcat_sample1').with_target('/etc/nut/ups.conf').with_content(expected) }
+    it { should contain_concat__fragment('nut_add_ups_sample1').with_target('/etc/nut/ups.conf').with_content(expected_ups_conf_fragment) }
   end
 
   describe 'Test ups.conf is created with all main options' do
@@ -37,21 +35,33 @@ describe 'nut::upsconcat' do
         :name            => 'sample2',
         :ups_name        => 'someups',
         :ups_port        => 'ttyS0',
+        :ups_vendorid    => '0xid',
+        :ups_productid   => '0xpd',
+        :ups_offdelay    => '20',
+        :ups_ondelay     => '10',
+        :ups_pollfreq    => '5',
+        :ups_serial      => '1324',
+        :ups_bus         => 'pci',
         :ups_driver      => 'somedriver',
         :ups_description => 'Test Config',
       }
     end
     let(:expected) do
-"# This file is managed by Puppet. DO NOT EDIT.
-[sample2]
-  desc = "Test Config"
-  driver = usbhid-ups
-  port = auto
-
+"[someups]
+  desc = \"Test Config\"
+  driver = somedriver
+  port = ttyS0
+  vendorid = \"0xid\"
+  productid = \"0xpd\"
+  offdelay = \"20\"
+  ondelay = \"10\"
+  pollfreq = \"5\"
+  serial = \"1324\"
+  bus = \"pci\"
 "
     end
 
     it { should include_class('concat::setup') }
-    it { should contain_concat__fragment('nut_upsconcat_sample2').with_target('/etc/nut/ups.conf').with_content(expected) }
+    it { should contain_concat__fragment('nut_add_ups_sample2').with_target('/etc/nut/ups.conf').with_content(expected) }
   end
 end
