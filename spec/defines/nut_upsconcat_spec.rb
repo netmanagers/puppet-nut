@@ -51,13 +51,13 @@ describe 'nut::upsconcat' do
   desc = \"Test Config\"
   driver = somedriver
   port = ttyS0
-  vendorid = \"0xid\"
-  productid = \"0xpd\"
-  offdelay = \"20\"
-  ondelay = \"10\"
-  pollfreq = \"5\"
-  serial = \"1324\"
-  bus = \"pci\"
+  vendorid = 0xid
+  productid = 0xpd
+  offdelay = 20
+  ondelay = 10
+  pollfreq = 5
+  serial = 1324
+  bus = pci
 "
     end
 

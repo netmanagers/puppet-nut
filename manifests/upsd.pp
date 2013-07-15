@@ -33,7 +33,7 @@ define nut::upsd (
 
   $ensure = bool2ensure($enable)
 
-  concat::fragment{ "nut_upsd_$name":
+  concat::fragment{ "nut_upsd_$real_aclname":
     ensure  => $ensure,
     target  => $nut::server_config_file,
     content => template($nut::server_concat_template_stanza),
