@@ -300,6 +300,17 @@
 # [*server_template*]
 # [*server_ups_description*]
 # [*server_ups_driver*]
+
+# [*server_ups_vendor*]
+# [*server_ups_vendorid*]
+# [*server_ups_product*]
+# [*server_ups_productid*]
+# [*server_ups_offdelay*]
+# [*server_ups_ondelay*]
+# [*server_ups_pollfreq*]
+# [*server_ups_serial*]
+# [*server_ups_bus*]
+
 # [*server_upsdrivers_template*]
 # [*server_ups_name*]
 # [*server_ups_port*]
@@ -368,6 +379,15 @@ class nut (
   $server_ups_name               = params_lookup( 'server_ups_name' ),
   $server_ups_driver             = params_lookup( 'server_ups_driver' ),
   $server_ups_port               = params_lookup( 'server_ups_port' ),
+  $server_ups_vendor             = params_lookup( 'server_ups_vendor' ),
+  $server_ups_vendorid           = params_lookup( 'server_ups_vendorid' ),
+  $server_ups_product            = params_lookup( 'server_ups_product' ),
+  $server_ups_productid          = params_lookup( 'server_ups_productid' ),
+  $server_ups_offdelay           = params_lookup( 'server_ups_offdelay' ),
+  $server_ups_ondelay            = params_lookup( 'server_ups_ondelay' ),
+  $server_ups_pollfreq           = params_lookup( 'server_ups_pollfreq' ),
+  $server_ups_serial             = params_lookup( 'server_ups_serial' ),
+  $server_ups_bus                = params_lookup( 'server_ups_bus' ),
   $server_ups_description        = params_lookup( 'server_ups_description' ),
   $server_user_config_file       = params_lookup( 'server_user_config_file' ),
   $server_user_concat_template   = params_lookup( 'server_user_concat_template' ),

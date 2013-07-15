@@ -94,6 +94,15 @@ class nut::params {
   $server_ups_driver = ''
   $server_ups_port = ''
   $server_ups_description = ''
+  $server_ups_vendor = ''
+  $server_ups_vendorid = ''
+  $server_ups_product = ''
+  $server_ups_productid = ''
+  $server_ups_offdelay = ''
+  $server_ups_ondelay = ''
+  $server_ups_pollfreq = ''
+  $server_ups_serial = ''
+  $server_ups_bus = ''
 
   $server_user_config_file = $::operatingsystem ? {
     default => "${config_dir}/upsd.users",

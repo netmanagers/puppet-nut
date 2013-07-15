@@ -42,6 +42,15 @@ class nut::server {
       ups_port        => $nut::server_ups_port,
       ups_driver      => $nut::server_ups_driver,
       ups_description => $nut::server_ups_description,
+      ups_vendor      => $nut::server_ups_vendor,
+      ups_vendorid    => $nut::server_ups_vendorid,
+      ups_product     => $nut::server_ups_product,
+      ups_productid   => $nut::server_ups_productid,
+      ups_offdelay    => $nut::server_ups_offdelay,
+      ups_ondelay     => $nut::server_ups_ondelay,
+      ups_pollfreq    => $nut::server_ups_pollfreq,
+      ups_serial      => $nut::server_ups_serial,
+      ups_bus         => $nut::server_ups_bus,
     }
   }
 
