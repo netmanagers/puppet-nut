@@ -2,6 +2,24 @@ class nut::nutconf {
 
   include nut
 
+  $real_start_mode = $::operatingsystem ? {
+    /(?i:CentOS|RedHat)/ => $nut::start_mode ? {
+      /(?i:standalone|netserver)/ => 'yes',
+      default                     => 'no',
+    },
+    default               => $nut::start_mode,
+  }
+
+  $manage_nutconf_file_source = $nut::nutconf_source ? {
+    ''        => undef,
+    default   => $nut::nutconf_source,
+  }
+
+  $manage_nutconf_file_content = $nut::nutconf_template ? {
+    ''        => undef,
+    default   => template($nut::nutconf_template),
+  }
+
   file { 'nut_conf':
     ensure  => $nut::manage_file,
     path    => $nut::nutconf_config_file,
@@ -9,8 +27,8 @@ class nut::nutconf {
     owner   => $nut::config_file_owner,
     group   => $nut::config_file_group,
     notify  => $nut::manage_service_autorestart,
-    source  => $nut::manage_nutconf_file_source,
-    content => $nut::manage_nutconf_file_content,
+    source  => $nutconf::manage_nutconf_file_source,
+    content => $nutconf::manage_nutconf_file_content,
     replace => $nut::manage_file_replace,
     audit   => $nut::manage_audit,
     noop    => $nut::bool_noops,

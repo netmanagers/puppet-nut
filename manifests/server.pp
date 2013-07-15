@@ -22,12 +22,13 @@ class nut::server {
   # have a single init script, so we check if it's not already defined
   if ! defined(Service[$nut::server_service]) {
     service { $nut::server_service:
-      ensure     => $nut::manage_service_ensure,
-      name       => $nut::server_service,
-      enable     => $nut::manage_service_enable,
-      hasstatus  => $nut::service_status,
-      pattern    => $nut::server_process,
-      require    => Package[$nut::server_package],
+      ensure    => $nut::manage_service_ensure,
+      name      => $nut::server_service,
+      enable    => $nut::manage_service_enable,
+      hasstatus => $nut::service_status,
+      pattern   => $nut::server_process,
+      require   => Package[$nut::server_package],
+      noop      => $nut::bool_noops,
     }
   }
   # How to manage upsd configuration
@@ -81,7 +82,7 @@ class nut::server {
   ### Service monitoring, if enabled ( monitor => true )
   if $nut::bool_monitor == true {
     if $nut::server_service != '' {
-      monitor::process { 'ups_server_process':
+      monitor::process { 'nut_server_process':
       process  => $nut::server_process,
       service  => $nut::server_service,
       pidfile  => $nut::server_pid_file,

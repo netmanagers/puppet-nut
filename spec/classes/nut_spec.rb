@@ -20,5 +20,15 @@ describe 'nut' do
     it { should_not include_class('nut::server') }
   end
 
+  describe 'Test Puppi Integration' do
+    let(:params) { {:puppi => true, :puppi_helper => "myhelper"} }
+    it { should contain_puppi__ze('nut').with_helper('myhelper') }
+  end
+    
+#  describe 'Test Monitoring Tools Integration' do
+#    let(:params) { {:monitor => true, :monitor_tool => "puppi" } }
+#    it { should contain_monitor__process('nut_client_process').with_tool('puppi') }
+#  end
+
 end
 

@@ -1,0 +1,9 @@
+# This file is managed by Puppet. DO NOT EDIT.
+# If the UPS is locally attached set it to "yes"
+SERVER=<%= @real_start_mode %>
+# Any options to pass to upsd
+UPSD_OPTIONS=
+# This *must* be the same as in /etc/ups/upsmon.conf
+POWERDOWNFLAG=/etc/killpower
+#
+# [End]

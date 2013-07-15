@@ -115,7 +115,11 @@ class nut::params {
   $server_user_upsmon_mode = ''
 
   ### INIT file
-  $nutconf_template = 'nut/nut.conf.erb'
+  $nutconf_template = $::operatingsystem ? {
+    /(?i:Debian|Ubuntu|Mint)/ => 'nut/nut.conf-debian.erb',
+    default                   => 'nut/nut.conf-centos.erb',
+  }
+
   $nutconf_source = ''
 
   $nutconf_config_file = $::operatingsystem ? {

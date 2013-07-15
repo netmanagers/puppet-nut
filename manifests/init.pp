@@ -526,11 +526,6 @@ class nut (
     false => true,
   }
 
-  $manage_nutconf_file_source = $nut::nutconf_source ? {
-    ''        => undef,
-    default   => $nut::nutconf_source,
-  }
-
   $manage_client_file_source = $nut::client_source ? {
     ''        => undef,
     default   => $nut::client_source,
@@ -539,11 +534,6 @@ class nut (
   $manage_server_file_source = $nut::server_source ? {
     ''        => undef,
     default   => $nut::server_source,
-  }
-
-  $manage_nutconf_file_content = $nut::nutconf_template ? {
-    ''        => undef,
-    default   => template($nut::nutconf_template),
   }
 
   $manage_client_file_content = $nut::client_template ? {
