@@ -52,6 +52,11 @@ For detailed info about the logic and usage patterns of Example42 modules check 
           version => '1.0.1',
         }
 
+* There are many defines that let you customize your config:
+  * upsconcat: lets you add more than one ups to a single daemon.
+  * upsd: adds ACLs for NUT users / clients into upsd.conf
+  * usersconcat: adds users to upsd.users
+
 * Disable nut service.
 
         class { 'nut':
