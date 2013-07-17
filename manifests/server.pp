@@ -33,7 +33,7 @@ class nut::server {
   }
   # How to manage upsd configuration
   case $nut::server_config_type {
-    'concat': { nut::upsd { 'default_upsd': } }
+    'concat': { nut::upsd { 'localhost': } }
     'file':   {
       file { 'upsd.conf':
         ensure  => $nut::manage_file,
