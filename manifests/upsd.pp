@@ -33,6 +33,32 @@ define nut::upsd (
 
   $ensure = bool2ensure($enable)
 
+  if ! defined(Concat[$nut::server_config_file]) {
+    concat { $nut::server_config_file:
+      mode    => $nut::config_file_mode,
+      owner   => $nut::config_file_owner,
+      group   => $nut::config_file_group,
+      warn    => true,
+      notify  => Service[$nut::server_service],
+      require => Package[$nut::server_package],
+    }
+  
+    concat::fragment{ 'ups_server_header':
+      target  => $nut::server_config_file,
+      content => template($nut::server_concat_template_header),
+      order   => 01,
+      notify  => Service[$nut::server_service],
+    }
+  
+    # The DEFAULT footer with the default policies
+    concat::fragment{ 'ups_server_footer':
+      target  => $nut::server_config_file,
+      content => template($nut::server_concat_template_footer),
+      order   => 99,
+      notify  => Service[$nut::server_service],
+    }
+  }
+
   concat::fragment{ "nut_upsd_$real_aclname":
     ensure  => $ensure,
     target  => $nut::server_config_file,
