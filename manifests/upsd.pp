@@ -22,7 +22,7 @@ define nut::upsd (
   }
 
   $real_client = $client ? {
-    ''      => '127.0.0.1',
+    ''      => '127.0.0.1/8',
     default => $client,
   }
 

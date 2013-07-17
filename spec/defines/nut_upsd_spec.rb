@@ -14,7 +14,7 @@ describe 'nut::upsd' do
 
   describe 'Test upsd.conf is created with no options' do
     let(:expected) do
-"ACL nut::upsd 127.0.0.1
+"ACL nut::upsd 127.0.0.1/8
 ACCEPT nut::upsd
 "
     end
@@ -29,7 +29,7 @@ ACCEPT nut::upsd
       }
     end
     let(:expected) do
-"ACL sample2 127.0.0.1
+"ACL sample2 127.0.0.1/8
 ACCEPT sample2
 "
     end
