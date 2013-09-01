@@ -15,7 +15,7 @@
 class nut::params {
 
   $install_mode = 'client'
-  
+
   # Valid modes are:
   # 'none', 'standalone', 'netserver', 'netclient'
   $start_mode = ''
@@ -194,7 +194,7 @@ class nut::params {
   $puppi_helper = 'standard'
   $debug = false
   $audit_only = false
-  $noops = false
+  $noops = undef
 
   ### CLIENT Template parameters
   $client_run_as_user = 'nut'

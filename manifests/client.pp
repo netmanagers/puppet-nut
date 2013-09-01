@@ -12,7 +12,7 @@ class nut::client {
   ### Managed resources
   package { $nut::client_package:
     ensure  => $nut::manage_package,
-    noop    => $nut::bool_noops,
+    noop    => $nut::noops,
   }
 
 ### ESTO ES LO QUE AGREGUE PARA ACDMODAR EL MANEJO EN EL CLIENTE Y NO EN EL INIT.PP
@@ -54,7 +54,7 @@ class nut::client {
       hasstatus  => $nut::service_status,
       pattern    => $nut::client_process,
       require    => Package[$nut::client_package],
-      noop       => $nut::bool_noops,
+      noop       => $nut::noops,
     }
   }
   file { 'ups_client_conf':
@@ -69,7 +69,7 @@ class nut::client {
     content => $nut::manage_client_file_content,
     replace => $nut::manage_file_replace,
     audit   => $nut::manage_audit,
-    noop    => $nut::bool_noops,
+    noop    => $nut::noops,
   }
 
   ### Service monitoring, if enabled ( monitor => true )
@@ -83,7 +83,7 @@ class nut::client {
       argument => $nut::process_args,
       tool     => $nut::monitor_tool,
       enable   => $nut::manage_monitor,
-      noop     => $nut::bool_noops,
+      noop     => $nut::noops,
       }
     }
   }
