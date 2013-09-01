@@ -31,6 +31,6 @@ class nut::nutconf {
     content => $nutconf::manage_nutconf_file_content,
     replace => $nut::manage_file_replace,
     audit   => $nut::manage_audit,
-    noop    => $nut::bool_noops,
+    noop    => $nut::noops,
   }
 }

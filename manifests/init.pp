@@ -168,7 +168,7 @@
 # [*noops*]
 #   Set noop metaparameter to true for all the resources managed by the module.
 #   Basically you can run a dryrun for this specific module if you set
-#   this to true. Default: false
+#   this to true. Default: undef
 #
 # [*data_dir*]
 #   Path of application data directory. Used by puppi
@@ -459,7 +459,6 @@ class nut (
   $bool_firewall=any2bool($firewall)
   $bool_debug=any2bool($debug)
   $bool_audit_only=any2bool($audit_only)
-  $bool_noops=any2bool($noops)
 
   ### Definition of some variables used in the module
   $manage_package = $nut::bool_absent ? {
@@ -559,7 +558,7 @@ class nut (
       force   => $nut::bool_source_dir_purge,
       replace => $nut::manage_file_replace,
       audit   => $nut::manage_audit,
-      noop    => $nut::bool_noops,
+      noop    => $nut::noops,
     }
   }
 
@@ -587,7 +586,7 @@ class nut (
       ensure    => $nut::manage_file,
       variables => $classvars,
       helper    => $nut::puppi_helper,
-      noop      => $nut::bool_noops,
+      noop      => $nut::noops,
     }
   }
 
@@ -600,7 +599,7 @@ class nut (
       owner   => 'root',
       group   => 'root',
       content => inline_template('<%= scope.to_hash.reject { |k,v| k.to_s =~ /(uptime.*|path|timestamp|free|.*password.*|.*psk.*|.*key)/ }.to_yaml %>'),
-      noop    => $nut::bool_noops,
+      noop    => $nut::noops,
     }
   }
 
