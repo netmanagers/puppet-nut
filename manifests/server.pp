@@ -15,7 +15,7 @@ class nut::server {
   package { $nut::server_package:
     ensure => $nut::manage_package,
     name   => $nut::server_package,
-    noop   => $nut::bool_noops,
+    noop   => $nut::noops,
   }
 
   # FIXME! This is a nasty hack, but in CentOS, nut-client and nut-server
@@ -28,7 +28,7 @@ class nut::server {
       hasstatus => $nut::service_status,
       pattern   => $nut::server_process,
       require   => Package[$nut::server_package],
-      noop      => $nut::bool_noops,
+      noop      => $nut::noops,
     }
   }
   # How to manage upsd configuration
@@ -88,7 +88,7 @@ class nut::server {
       direction   => 'input',
       tool        => $nut::firewall_tool,
       enable      => $nut::manage_firewall,
-      noop        => $nut::bool_noops,
+      noop        => $nut::noops,
     }
   }
 
@@ -103,7 +103,7 @@ class nut::server {
       argument => $nut::process_args,
       tool     => $nut::monitor_tool,
       enable   => $nut::manage_monitor,
-      noop     => $nut::bool_noops,
+      noop     => $nut::noops,
       }
     }
   }
