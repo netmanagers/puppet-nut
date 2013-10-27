@@ -17,7 +17,6 @@ define nut::upsconcat (
   $order = '50',
   $ensure = 'present') {
 
-  include concat::setup
   include nut
 
   $concat_ups_file = $nut::server_upsdrivers_config_file

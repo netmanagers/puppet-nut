@@ -23,7 +23,6 @@ describe 'nut::usersconcat' do
   password = password
 "
     end
-    it { should include_class('concat::setup') }
     it { should contain_concat__fragment('nut_add_user_sample1').with_target('/etc/nut/upsd.users').with_content(expected) }
   end
 
@@ -48,7 +47,6 @@ describe 'nut::usersconcat' do
 "
     end
 
-    it { should include_class('concat::setup') }
     it { should contain_concat__fragment('nut_add_user_sample2').with_target('/etc/nut/upsd.users').with_content(expected) }
   end
 end

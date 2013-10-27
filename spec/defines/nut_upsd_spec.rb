@@ -18,7 +18,6 @@ describe 'nut::upsd' do
 ACCEPT nut::upsd
 "
     end
-    it { should include_class('concat::setup') }
     it { should contain_concat__fragment('nut_upsd_nut::upsd').with_target('/etc/nut/upsd.conf').with_content(expected) }
   end
 
@@ -33,7 +32,6 @@ ACCEPT nut::upsd
 ACCEPT sample2
 "
     end
-    it { should include_class('concat::setup') }
     it { should contain_concat__fragment('nut_upsd_sample2').with_target('/etc/nut/upsd.conf').with_content(expected) }
   end
 
@@ -51,7 +49,6 @@ ACCEPT somesubnet
 "
     end
 
-    it { should include_class('concat::setup') }
     it { should contain_concat__fragment('nut_upsd_somesubnet').with_target('/etc/nut/upsd.conf').with_content(expected) }
   end
 end

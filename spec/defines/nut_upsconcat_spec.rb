@@ -25,7 +25,6 @@ describe 'nut::upsconcat' do
   port = auto
 "
     end
-    it { should include_class('concat::setup') }
     it { should contain_concat__fragment('nut_add_ups_sample1').with_target('/etc/nut/ups.conf').with_content(expected_ups_conf_fragment) }
   end
 
@@ -61,7 +60,6 @@ describe 'nut::upsconcat' do
 "
     end
 
-    it { should include_class('concat::setup') }
     it { should contain_concat__fragment('nut_add_ups_sample2').with_target('/etc/nut/ups.conf').with_content(expected) }
   end
 end
