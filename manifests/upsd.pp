@@ -14,7 +14,6 @@ define nut::upsd (
 ) {
 
   include nut
-  include concat::setup
 
   $real_aclname = $aclname ? {
     ''      => $title,

@@ -9,7 +9,6 @@ define nut::usersconcat (
   $order = '50',
   $ensure = 'present') {
 
-  include concat::setup
   include nut
 
   $concat_users_file = $nut::server_user_config_file
