@@ -1,5 +1,5 @@
 name 'netmanagers-nut'
-version '1.0.7'
+version '1.1.0'
 
 author 'Sebastian Quaino'
 license 'Apache2'
