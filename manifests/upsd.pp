@@ -1,16 +1,19 @@
 # Define: nut::upsd
 #
 # Supported arguments:
-# $aclname - The name you want to give the acl. If not set, defaults to == $title
+# $aclname - The name you want to give the acl. If not set,
+#            defaults to == $title
 # $client  - The IP of the client
 #            Default: 127.0.0.1
 # $action  - One of ACCEPT / REJECT
 #            Default: ACCEPT
+# $order   - Let's you define an order for your ACLs
 
 define nut::upsd (
   $aclname = '',
   $client  = '',
   $action  = '',
+  $order   = '',
   $enable  = true,
 ) {
 
@@ -31,6 +34,11 @@ define nut::upsd (
     default => $action,
   }
 
+  $real_order = $order ? {
+    ''      => '50',
+    default => $order,
+  }
+
   $ensure = bool2ensure($enable)
 
   if ! defined(Concat[$nut::server_config_file]) {
@@ -42,14 +50,14 @@ define nut::upsd (
       notify  => Service[$nut::server_service],
       require => Package[$nut::server_package],
     }
- 
+
     concat::fragment{ 'ups_server_header':
       target  => $nut::server_config_file,
       content => template($nut::server_concat_template_header),
       order   => 01,
       notify  => Service[$nut::server_service],
     }
- 
+
     # The DEFAULT footer with the default policies
     concat::fragment{ 'ups_server_footer':
       target  => $nut::server_config_file,
