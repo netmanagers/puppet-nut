@@ -1,3 +1,9 @@
+# Class nut::nutconf
+#
+# Manage nut.conf file for different distros.
+# This class is not meant to be used alone as is called by other parts of the
+# nut module.
+#
 class nut::nutconf {
 
   include nut

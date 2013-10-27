@@ -2,7 +2,7 @@
 #
 # Supported arguments:
 # $aclname - The name you want to give the acl. If not set, defaults to == $title
-# $client  - The IP of the client 
+# $client  - The IP of the client
 #            Default: 127.0.0.1
 # $action  - One of ACCEPT / REJECT
 #            Default: ACCEPT
@@ -10,7 +10,8 @@
 define nut::upsd (
   $aclname = '',
   $client  = '',
-  $action  = ''
+  $action  = '',
+  $enable  = true,
 ) {
 
   include nut
@@ -41,14 +42,14 @@ define nut::upsd (
       notify  => Service[$nut::server_service],
       require => Package[$nut::server_package],
     }
-  
+ 
     concat::fragment{ 'ups_server_header':
       target  => $nut::server_config_file,
       content => template($nut::server_concat_template_header),
       order   => 01,
       notify  => Service[$nut::server_service],
     }
-  
+ 
     # The DEFAULT footer with the default policies
     concat::fragment{ 'ups_server_footer':
       target  => $nut::server_config_file,
@@ -58,7 +59,7 @@ define nut::upsd (
     }
   }
 
-  concat::fragment{ "nut_upsd_$real_aclname":
+  concat::fragment{ "nut_upsd_${real_aclname}":
     ensure  => $ensure,
     target  => $nut::server_config_file,
     content => template($nut::server_concat_template_stanza),
