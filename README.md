@@ -1,10 +1,10 @@
 # Puppet module: nut
 
-## [Maintainer wanted](https://github.com/netmanagers/puppet-account/issues/new)
+## [Maintainer wanted](https://github.com/netmanagers/puppet-nut/issues/new)
 
 **WARNING WARNING WARNING**
 
-[puppet-account](https://github.com/netmanagers/puppet-account) is not currently being maintained, 
+[puppet-nut](https://github.com/netmanagers/puppet-nut) is not currently being maintained, 
 and may have unresolved issues or not be up-to-date. 
 
 I'm still using it on a daily basis (with Puppet 3.8.5) and fixing issues I find
@@ -12,7 +12,7 @@ while using it. But sadly, I don't have the time required to actively add new fe
 fix issues other people report or port it to Puppet 4.x.
 
 If you would like to maintain this module,
-please create an issue at: https://github.com/netmanagers/puppet-account/issues
+please create an issue at: https://github.com/netmanagers/puppet-nut/issues
 offering yourself.
 
 ## Getting started
